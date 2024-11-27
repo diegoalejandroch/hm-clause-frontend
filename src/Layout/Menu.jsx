@@ -1,10 +1,11 @@
 import { IoHomeOutline } from "react-icons/io5";
 import { BsCollection } from "react-icons/bs";
 import { GrUserWorker } from "react-icons/gr";
+import { FiShoppingCart } from "react-icons/fi"; 
 
 function Menu() {
   return (
-    <ul className="menu bg-base-100 rounded-box w-56 shadow-lg">
+    <ul className="menu bg-base-100 w-56 shadow-lg">
       {/* Icon of the company */}
 
       <h2 className="menu-title text-lg text-primary">
@@ -26,6 +27,12 @@ function Menu() {
         <a>
           <GrUserWorker className="h-5 w-5" />
           Empleados
+        </a>
+      </li>
+      <li>
+        <a>
+          <FiShoppingCart className="h-5 w-5" />
+          Ventas
         </a>
       </li>
     </ul>

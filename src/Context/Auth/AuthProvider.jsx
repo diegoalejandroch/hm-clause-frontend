@@ -1,11 +1,10 @@
-import {useState, createContext } from "react";
+import {useState} from "react";
 import PropTypes from 'prop-types';
-
-const contextDataAuth = createContext();
+import contextDataAuth from "./ContextDataAuth";
 
 function AuthProvider(props) {
   const { children } = props;
-  const [userLogged, setUserLogged] = useState(true);
+  const [userLogged, setUserLogged] = useState(false);
 
   const login = () => setUserLogged(true);
   const logout = () => setUserLogged(false);
@@ -22,7 +21,4 @@ AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export {
-  AuthProvider,
-  contextDataAuth
-}
+export default AuthProvider;
