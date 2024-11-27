@@ -4,7 +4,7 @@ import { GrUserWorker } from "react-icons/gr";
 
 function Menu() {
   return (
-    <ul className="menu bg-base-200 rounded-box w-56 shadow-lg">
+    <ul className="menu bg-base-100 rounded-box w-56 shadow-lg">
       {/* Icon of the company */}
 
       <h2 className="menu-title text-lg text-primary">
