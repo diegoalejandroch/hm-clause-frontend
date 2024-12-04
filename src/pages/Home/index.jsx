@@ -9,7 +9,7 @@ import GerminationLineChart from "../../components/charts/GerminationLineChart";
 import FeedbackLineChart from "../../components/charts/FeedbackLineChart";
 import RetentionLineChart from "../../components/charts/RetentionLineChart";
 import ProjectBarChart from "../../components/charts/ProjectBarChart";
-import ROIBarChart from "../../components/charts/ROIBarChart";
+import ROIBarChart from "../../components/charts/ROIBarcharts";
 
 function Home() {
   return (
