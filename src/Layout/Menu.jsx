@@ -2,6 +2,8 @@ import { IoHomeOutline } from "react-icons/io5";
 import { BsCollection } from "react-icons/bs";
 import { GrUserWorker } from "react-icons/gr";
 import { FiShoppingCart } from "react-icons/fi"; 
+import { PiPersonSimpleBike } from "react-icons/pi"
+import { FaUsers } from "react-icons/fa";
 
 function Menu() {
   return (
@@ -25,6 +27,12 @@ function Menu() {
       </li>
       <li>
         <a>
+          <FaUsers className="h-5 w-5" />
+          Clientes
+        </a>
+      </li>
+      <li>
+        <a>
           <GrUserWorker className="h-5 w-5" />
           Empleados
         </a>
@@ -33,6 +41,12 @@ function Menu() {
         <a>
           <FiShoppingCart className="h-5 w-5" />
           Ventas
+        </a>
+      </li>
+      <li>
+        <a>
+          <PiPersonSimpleBike className="h-5 w-5" />
+          Proveedores
         </a>
       </li>
     </ul>

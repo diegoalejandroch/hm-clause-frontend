@@ -1,18 +1,55 @@
+import { useContext, useRef, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import Navbar from "../../Layout/Navbar";
 import HeroSection from "../../Layout/Hero";
 import Tomate from "../../assets/tomate.webp";
-import { useRef } from "react";
 import { Link } from "react-router";
+import contextDataAuth from "../../Context/Auth/ContextDataAuth";
+
+const loginVs = yup.object().shape({
+  email: yup.string().email('El correo debe ser un email').required('El correo es requerido'),
+  password: yup.string().required('La contraseña es requerida')
+});
+
 
 const Login = () => {
   const formRef = useRef(null);
+
 
   const scrollToForm = () => {
     formRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  const { login, error } = useContext(contextDataAuth);
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(loginVs)
+  });
+
+  useEffect(() => {
+    if (error) {
+      document.getElementById('error-toast')?.classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('error-toast')?.classList.add('hidden');
+      }, 3000);
+    }
+  }, [error]);
+
+  const onSubmit = (data) => {
+    login(data);
+  }
+
   return (
     <div>
+      {error && (
+        <div id="error-toast" className="toast toast-top toast-end top-4 right-4 hidden z-50">
+          <div className="alert alert-error">
+            <span>{error}</span>
+          </div>
+        </div>
+      )}
       <Navbar />
       <HeroSection scrollToForm={scrollToForm} />
       <div ref={formRef} className="bg-base-200 min-h-screen flex items-center justify-center">
@@ -33,7 +70,7 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text">Correo</span>
                 </label>
-                <label className="input input-bordered flex items-center gap-2">
+                <label className={`input input-bordered flex items-center gap-2 ${errors.email ? 'input-error' : ''}`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
@@ -47,14 +84,20 @@ const Login = () => {
                     type="email"
                     className="grow"
                     placeholder="email@example.com"
+                    {...register('email')}
                   />
                 </label>
+                {errors.email && (
+                  <label className="label">
+                    <span className="label-text-alt text-error">{errors.email.message}</span>
+                  </label>
+                )}
               </div>
               <div className="form-control mt-4">
                 <label className="label">
                   <span className="label-text">Contraseña</span>
                 </label>
-                <label className="input input-bordered flex items-center gap-2">
+                <label className={`input input-bordered flex items-center gap-2 ${errors.password ? 'input-error' : ''}`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
@@ -71,11 +114,19 @@ const Login = () => {
                     type="password"
                     className="grow"
                     placeholder="Enter password"
+                    {...register('password')}
                   />
                 </label>
+                {errors.password && (
+                  <label className="label">
+                    <span className="label-text-alt text-error">{errors.password.message}</span>
+                  </label>
+                )}
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Iniciar sesión</button>
+                <button className="btn btn-primary" onClick={handleSubmit(onSubmit)} type="button">
+                  Iniciar sesión
+                </button>
               </div>
             </form>
             <div className="divider">OR</div>

@@ -1,8 +1,10 @@
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import contextDataAuth from "../Context/Auth/ContextDataAuth";
 
 function NabvarHome() {
+  const { logout } = useContext(contextDataAuth);
   const [theme, setTheme] = useState('light');
 
   const toggleTheme = () => {
@@ -14,6 +16,10 @@ function NabvarHome() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, []);
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <div className="navbar bg-base-100">
@@ -62,7 +68,7 @@ function NabvarHome() {
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <a onClick={handleLogout}>Logout</a>
             </li>
           </ul>
         </div>
