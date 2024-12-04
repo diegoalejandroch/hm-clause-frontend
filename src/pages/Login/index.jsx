@@ -85,6 +85,7 @@ const Login = () => {
                     className="grow"
                     placeholder="email@example.com"
                     {...register('email')}
+                    defaultValue="marcaloayzae@gmail.com"
                   />
                 </label>
                 {errors.email && (
@@ -115,6 +116,7 @@ const Login = () => {
                     className="grow"
                     placeholder="Enter password"
                     {...register('password')}
+                    defaultValue="securepassword"
                   />
                 </label>
                 {errors.password && (
